@@ -1,0 +1,41 @@
+
+.buttons-container {
+    padding: 30px;
+    background-color: #6ad1e3;
+}
+
+button.btn.btn-primary {
+    background-color: rgb(214 248 101);
+    color: black;
+}
+
+button.btn.btn-primary.me-2 {
+    background-color: rgb(0 48 87);
+    color: white;
+}
+
+.header-container {
+    background-color: rgb(0 48 87);
+}
+
+.logo {
+    font-family: Arial, sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+.btn-primary {
+    background-color: rgba(59,130,246,0.5);
+    border-color: rgba(59,130,246,0.5);
+}
+.btn-primary:hover {
+    background-color: rgba(59,130,246,0.7);
+    border-color: rgba(59,130,246,0.7);
+}
+.form-control:focus {
+    border-color: rgba(59,130,246,0.5);
+    box-shadow: 0 0 0 0.2rem rgba(59,130,246,0.25);
+}
