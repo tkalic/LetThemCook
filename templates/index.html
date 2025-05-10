@@ -7,74 +7,107 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .split-row {
+            display: flex;
+            gap: 2rem;
+            min-height: 70vh;
+        }
+        .pdf-viewer-col {
+            flex: 1 1 0;
+            background: #f8fafc;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,48,87,0.06);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 0;
+        }
+        .pdf-viewer-col h4 {
+            color: #003057;
+            margin-bottom: 1rem;
+        }
+        .pdf-iframe {
+            width: 100%;
+            height: 600px;
+            border: 1px solid #e0e7ef;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .results-col {
+            flex: 1 1 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            min-width: 0;
+        }
+        @media (max-width: 991px) {
+            .split-row {
+                flex-direction: column;
+            }
+            .pdf-iframe {
+                height: 350px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="header-container">
-            <div class="logo">KOCH</div>
+        <div class="logo">KOCH</div>
     </div>
     <div class="container-fluid py-4">
         <h1 class="text-center mb-4">LV Verarbeitung</h1>
-
-    <div class="buttons-container">
         <div class="row mb-4">
-            <div class="col-md-3">
+            <div class="col-md-3 mb-2">
                 <div class="form-group">
                     <label for="customerId">Kunden-ID</label>
                     <input type="text" class="form-control" id="customerId" required>
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-md-6 mb-2">
                 <div class="form-group">
-                    <label for="pdfFile">PDF-Datei auswälen</label>
+                    <label for="pdfFile">PDF-Datei auswählen</label>
                     <input type="file" class="form-control" id="pdfFile" accept=".pdf">
                 </div>
             </div>
         </div>
-
-
-        <div class="row mb-4">
-            <div class="col-12">
-                <button class="btn btn-primary" onclick="">Hochladen</button>
+        <div class="split-row">
+            <div class="pdf-viewer-col">
+                <h4>Original PDF</h4>
+                <iframe id="pdfViewer" class="pdf-iframe" src=""></iframe>
             </div>
-        </div>
-        </div>
-
-        <div class="row mb-4">
-            <div class="col-12">
-                <div id="dataTable"></div>
-            </div>
-        </div>
-
-        <div class="row mb-4">
-            <div class="col-12">
-                <button class="btn btn-primary me-2" onclick="resetData()">Zurücksetzen</button>
-                <button class="btn btn-primary" onclick="generateXML()">XML generieren</button>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#jsonPreview">JSON</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#xmlPreview">XML</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="jsonPreview">
-                                <pre id="jsonContent"></pre>
-                            </div>
-                            <div class="tab-pane fade" id="xmlPreview">
-                                <pre id="xmlContent"></pre>
+            <div class="results-col">
+                <div class="mb-4">
+                    <div id="dataTable"></div>
+                </div>
+                <div class="mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#jsonPreview">JSON</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#xmlPreview">XML</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="jsonPreview">
+                                    <pre id="jsonContent"></pre>
+                                </div>
+                                <div class="tab-pane fade" id="xmlPreview">
+                                    <pre id="xmlContent"></pre>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary me-2" onclick="resetData()">Zurücksetzen</button>
+                    <button class="btn btn-primary" onclick="generateXML()">XML generieren</button>
                 </div>
             </div>
         </div>
@@ -90,76 +123,16 @@
         hot = new Handsontable(container, {
             data: [],
             columns: [
-                {
-                    data: 'type',
-                    type: 'dropdown',
-                    source: ['P', 'Z', 'D'],
-                    title: 'Typ',
-                    width: 80
-                },
-                {
-                    data: 'sku',
-                    type: 'text',
-                    title: 'SKU',
-                    width: 120
-                },
-                {
-                    data: 'name',
-                    type: 'text',
-                    title: 'Name',
-                    width: 200
-                },
-                {
-                    data: 'text',
-                    type: 'text',
-                    title: 'Beschreibung',
-                    width: 300
-                },
-                {
-                    data: 'quantity',
-                    type: 'numeric',
-                    title: 'Menge',
-                    width: 100,
-                    numericFormat: {
-                        pattern: '0.00'
-                    }
-                },
-                {
-                    data: 'quantityUnit',
-                    type: 'text',
-                    title: 'Einheit',
-                    width: 100
-                },
-                {
-                    data: 'price',
-                    type: 'numeric',
-                    title: 'Preis',
-                    width: 120,
-                    numericFormat: {
-                        pattern: '0.00'
-                    }
-                },
-                {
-                    data: 'priceUnit',
-                    type: 'text',
-                    title: 'Preis-Einheit',
-                    width: 100
-                },
-                {
-                    data: 'purchasePrice',
-                    type: 'numeric',
-                    title: 'Einkaufspreis',
-                    width: 120,
-                    numericFormat: {
-                        pattern: '0.00'
-                    }
-                },
-                {
-                    data: 'commission',
-                    type: 'text',
-                    title: 'Kommission',
-                    width: 150
-                }
+                { data: 'type', type: 'dropdown', source: ['P', 'Z', 'D'], title: 'Typ', width: 80 },
+                { data: 'sku', type: 'text', title: 'SKU', width: 120 },
+                { data: 'name', type: 'text', title: 'Name', width: 200 },
+                { data: 'text', type: 'text', title: 'Beschreibung', width: 300 },
+                { data: 'quantity', type: 'numeric', title: 'Menge', width: 100, numericFormat: { pattern: '0.00' } },
+                { data: 'quantityUnit', type: 'text', title: 'Einheit', width: 100 },
+                { data: 'price', type: 'numeric', title: 'Preis', width: 120, numericFormat: { pattern: '0.00' } },
+                { data: 'priceUnit', type: 'text', title: 'Preis-Einheit', width: 100 },
+                { data: 'purchasePrice', type: 'numeric', title: 'Einkaufspreis', width: 120, numericFormat: { pattern: '0.00' } },
+                { data: 'commission', type: 'text', title: 'Kommission', width: 150 }
             ],
             height: 400,
             width: '100%',
@@ -169,6 +142,10 @@
         document.getElementById('pdfFile').addEventListener('change', async function(e) {
             const file = e.target.files[0];
             if (file) {
+                // Show PDF in iframe
+                const pdfUrl = URL.createObjectURL(file);
+                document.getElementById('pdfViewer').src = pdfUrl;
+
                 const formData = new FormData();
                 formData.append('file', file);
 
@@ -213,20 +190,13 @@
 
         async function generateXML() {
             const customerId = document.getElementById('customerId').value;
-            const shippingConditionId = document.getElementById('shippingConditionId').value;
-            const commission = document.getElementById('commission').value;
-            const type = document.getElementById('type').value;
-
-            if (!customerId || !shippingConditionId) {
-                alert('Bitte geben Sie eine Kunden-ID und Versandbedingung-ID ein.');
+            // Add other required fields as needed
+            if (!customerId) {
+                alert('Bitte geben Sie eine Kunden-ID ein.');
                 return;
             }
-
             const data = {
                 customerId,
-                shippingConditionId,
-                commission,
-                type,
                 items: hot.getData().map(row => {
                     const obj = {};
                     hot.getColHeader().forEach((header, index) => {
@@ -235,7 +205,6 @@
                     return obj;
                 })
             };
-
             try {
                 const response = await fetch('/generate-xml', {
                     method: 'POST',
@@ -244,7 +213,6 @@
                     },
                     body: JSON.stringify(data)
                 });
-
                 if (response.ok) {
                     const blob = await response.blob();
                     const url = window.URL.createObjectURL(blob);
