@@ -30,7 +30,7 @@
         }
         .pdf-iframe {
             width: 100%;
-            height: 600px;
+            height: 900px;
             border: 1px solid #e0e7ef;
             border-radius: 8px;
             background: #fff;
@@ -190,13 +190,15 @@
 
         async function generateXML() {
             const customerId = document.getElementById('customerId').value;
-            // Add other required fields as needed
             if (!customerId) {
                 alert('Bitte geben Sie eine Kunden-ID ein.');
                 return;
             }
             const data = {
                 customerId,
+                shippingConditionId: '2',
+                commission: '',
+                type: 'A',
                 items: hot.getData().map(row => {
                     const obj = {};
                     hot.getColHeader().forEach((header, index) => {
@@ -214,15 +216,9 @@
                     body: JSON.stringify(data)
                 });
                 if (response.ok) {
-                    const blob = await response.blob();
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'angebot.xml';
-                    document.body.appendChild(a);
-                    a.click();
-                    window.URL.revokeObjectURL(url);
-                    a.remove();
+                    const xmlText = await response.text();
+                    document.getElementById('xmlContent').textContent = xmlText;
+                    document.querySelector('.nav-link[href="#xmlPreview"]').click();
                 } else {
                     const error = await response.json();
                     alert(error.error || 'Fehler beim Generieren des XML');
@@ -235,6 +231,7 @@
         hot.addHook('afterChange', function() {
             updatePreview();
         });
+        
     </script>
 </body>
 </html> 
