@@ -1,0 +1,360 @@
+{
+  "name": "Demo: My first AI Agent in n8n",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        40,
+        -220
+      ],
+      "id": "9c01b6bc-496f-488e-b86f-1dde1474a814",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"order\": {\n\t\t\"customerId\": \"109349\",\n\t\t\"commission\": \"1901 / Sägemühle\",\n\t\t\"type\": \"A\",\n\t\t\"shippingConditionId\": \"2\",\n\t\t\"items\": {\n\t\t\t\"item\": [\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"TVB - Türblatt 875x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Liefern und Einbauen von Innentür-Elementen.\\n\\nElementgröße Richtmaß: 875 x 2.125 mm\\n\\nAngebotenes Fabrikat: Jeld-Wen Optima 30.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"140\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"183.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"TVB - Türblatt 750x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch Elementgröße: 750 x 2.125 mm.\\n\\nAngebotenes Fabrikat: Jeld-Wen Optima 30.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"1\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"183.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.2\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"TVB - Türblatt 625x2000 mm mit Dichtung\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch:\\n\\nElementgröße: 625 x 2.000 mm\\n\\nmit absenkbarer Bodendichtung.\\n\\nAngebotenes Fabrikat: Jeld-Wen Optima 30.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"1\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"227.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.3\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"Feuchtraum-Türblatt 875x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch:\\n\\nFeuchteschutz und Klimaklasse II.\\n\\nAngebotenes Fabrikat: Jeld-Wen Feuchtraumtür Typ Y.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"75\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"300.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.4\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"Feuchtraum-Türblatt 750x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch:\\n\\nFeuchteschutz und Klimaklasse II.\\n\\nElementgröße: 750 x 2.125 mm\\n\\nAngebotenes Fabrikat: Jeld-Wen Feuchtraumtür Typ Y.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"11\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"300.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.5\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"Eventual: HPL-Beschichtung\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"__text\": \"Alternative: Alle Türblätter (Pos 01.1-01.5) mit HPL-Beschichtung.\\n\\nAngebotenes Fabrikat: Jeld-Wen.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"84\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"228.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.6\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"240001\",\n\t\t\t\t\t\"name\": \"Beschläge Bad- und WC-Türen\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"ul\": {\n\t\t\t\t\t\t\t\"li\": [\n\t\t\t\t\t\t\t\t\"WC-Einsteckschloss, Klasse 1, 1-tourig\",\n\t\t\t\t\t\t\t\t\"Edelstahl-WC-Rosettengarnitur\"\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"__text\": \"Beschläge bestehend aus:\\n\\n\\n\\nAngebotenes Fabrikat: Hoppe Amsterdam.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"133\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"24.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 02.3\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"240001\",\n\t\t\t\t\t\"name\": \"Eventual: Beschläge Zimmertüren BB-Schloss\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"ul\": {\n\t\t\t\t\t\t\t\"li\": [\n\t\t\t\t\t\t\t\t\"Buntbart-Einsteckschloss, 1-tourig, je 1 Schlüssel\",\n\t\t\t\t\t\t\t\t\"Edelstahl-Rosettengarnitur\"\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"__text\": \"Beschläge bestehend aus:\\n\\n\\n\\nTürdrücker: FSB 1076 Edelstahl feingebürstet.\\n\\nAngebotenes Produkt: Hoppe Amsterdam.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"38\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"38.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 02.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"240001\",\n\t\t\t\t\t\"name\": \"Beschläge Zimmertüren PZ-Schloss\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"ul\": {\n\t\t\t\t\t\t\t\"li\": [\n\t\t\t\t\t\t\t\t\"Profilzylinderschloss, 1-tourig inkl. Schlüssel\",\n\t\t\t\t\t\t\t\t\"Edelstahl-Rosettengarnitur\"\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"__text\": \"Wie Pos 02.1 jedoch:\\n\\n\\n\\nTürdrücker: Hoppe Amsterdam.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"95\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"37.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 02.2\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"330001\",\n\t\t\t\t\t\"name\": \"Türstopper\",\n\t\t\t\t\t\"text\": \"Türstopper Wandbefestigung, Kunststoff weiß, ø ca. 40 mm, Bummsinchen o.glw.\",\n\t\t\t\t\t\"quantity\": \"228\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"6.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 03.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"DL5010008\",\n\t\t\t\t\t\"name\": \"Service- / Montagetechniker Polier\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Stundenlohnarbeiten durch Polier/in.\\n\\nVerrechnungssatz umfasst sämtliche Lohn- und Nebenkosten, Gemeinkosten, Wagnis und Gewinn.\\n\\nZeit wird nach tatsächlichem Aufwand gemäß Tätigkeitsnachweis abgerechnet.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"15\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"95.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 04.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"DL5010008\",\n\t\t\t\t\t\"name\": \"Service- / Montagetechniker Facharbeiter\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Stundenlohnarbeiten durch Facharbeiter/in.\\n\\nVerrechnungssatz umfasst sämtliche Lohn- und Nebenkosten, Gemeinkosten, Wagnis und Gewinn.\\n\\nZeit wird nach tatsächlichem Aufwand gemäß Tätigkeitsnachweis abgerechnet.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"40\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"75.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 04.2\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"DL5010008\",\n\t\t\t\t\t\"name\": \"Service- / Montagetechniker Bauhelfer\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Stundenlohnarbeiten durch Bauhelfer/in.\\n\\nVerrechnungssatz umfasst sämtliche Lohn- und Nebenkosten, Gemeinkosten, Wagnis und Gewinn.\\n\\nZeit wird nach tatsächlichem Aufwand gemäß Tätigkeitsnachweis abgerechnet.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"15\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"58.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 04.3\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        940,
+        200
+      ],
+      "id": "eeabeee3-2013-419f-9896-26cb1a85f839",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "options": {
+          "prompt": "Instructions:\n--------------\n{instructions}\n--------------\nCompletion:\n--------------\n{completion}\n--------------\n\nAbove, the Completion did not satisfy the constraints given in the Instructions.\nError:\n--------------\n{error}\n--------------\n\nPlease try again. Please only respond with an answer that satisfies the constraints laid out in the Instructions:"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        820,
+        20
+      ],
+      "id": "6503bc5b-4cf0-4475-a1fb-55f22d253c2f",
+      "name": "Auto-fixing Output Parser"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Map the following content of this pdf: {{ $json.text }}\ninto the desired output schema as follows:\n{\n\t\"order\": {\n\t\t\"customerId\": \"109349\",\n\t\t\"commission\": \"1901 / Sägemühle\",\n\t\t\"type\": \"A\",\n\t\t\"shippingConditionId\": \"2\",\n\t\t\"items\": {\n\t\t\t\"item\": [\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"TVB - Türblatt 875x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Liefern und Einbauen von Innentür-Elementen.\\n\\nElementgröße Richtmaß: 875 x 2.125 mm\\n\\nAngebotenes Fabrikat: Jeld-Wen Optima 30.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"140\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"183.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"TVB - Türblatt 750x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch Elementgröße: 750 x 2.125 mm.\\n\\nAngebotenes Fabrikat: Jeld-Wen Optima 30.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"1\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"183.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.2\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"TVB - Türblatt 625x2000 mm mit Dichtung\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch:\\n\\nElementgröße: 625 x 2.000 mm\\n\\nmit absenkbarer Bodendichtung.\\n\\nAngebotenes Fabrikat: Jeld-Wen Optima 30.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"1\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"227.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.3\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"Feuchtraum-Türblatt 875x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch:\\n\\nFeuchteschutz und Klimaklasse II.\\n\\nAngebotenes Fabrikat: Jeld-Wen Feuchtraumtür Typ Y.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"75\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"300.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.4\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"Feuchtraum-Türblatt 750x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch:\\n\\nFeuchteschutz und Klimaklasse II.\\n\\nElementgröße: 750 x 2.125 mm\\n\\nAngebotenes Fabrikat: Jeld-Wen Feuchtraumtür Typ Y.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"11\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"300.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.5\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"Eventual: HPL-Beschichtung\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"__text\": \"Alternative: Alle Türblätter (Pos 01.1-01.5) mit HPL-Beschichtung.\\n\\nAngebotenes Fabrikat: Jeld-Wen.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"84\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"228.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.6\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"240001\",\n\t\t\t\t\t\"name\": \"Beschläge Bad- und WC-Türen\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"ul\": {\n\t\t\t\t\t\t\t\"li\": [\n\t\t\t\t\t\t\t\t\"WC-Einsteckschloss, Klasse 1, 1-tourig\",\n\t\t\t\t\t\t\t\t\"Edelstahl-WC-Rosettengarnitur\"\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"__text\": \"Beschläge bestehend aus:\\n\\n\\n\\nAngebotenes Fabrikat: Hoppe Amsterdam.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"133\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"24.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 02.3\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"240001\",\n\t\t\t\t\t\"name\": \"Eventual: Beschläge Zimmertüren BB-Schloss\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"ul\": {\n\t\t\t\t\t\t\t\"li\": [\n\t\t\t\t\t\t\t\t\"Buntbart-Einsteckschloss, 1-tourig, je 1 Schlüssel\",\n\t\t\t\t\t\t\t\t\"Edelstahl-Rosettengarnitur\"\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"__text\": \"Beschläge bestehend aus:\\n\\n\\n\\nTürdrücker: FSB 1076 Edelstahl feingebürstet.\\n\\nAngebotenes Produkt: Hoppe Amsterdam.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"38\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"38.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 02.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"240001\",\n\t\t\t\t\t\"name\": \"Beschläge Zimmertüren PZ-Schloss\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"ul\": {\n\t\t\t\t\t\t\t\"li\": [\n\t\t\t\t\t\t\t\t\"Profilzylinderschloss, 1-tourig inkl. Schlüssel\",\n\t\t\t\t\t\t\t\t\"Edelstahl-Rosettengarnitur\"\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"__text\": \"Wie Pos 02.1 jedoch:\\n\\n\\n\\nTürdrücker: Hoppe Amsterdam.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"95\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"37.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 02.2\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"330001\",\n\t\t\t\t\t\"name\": \"Türstopper\",\n\t\t\t\t\t\"text\": \"Türstopper Wandbefestigung, Kunststoff weiß, ø ca. 40 mm, Bummsinchen o.glw.\",\n\t\t\t\t\t\"quantity\": \"228\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"6.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 03.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"DL5010008\",\n\t\t\t\t\t\"name\": \"Service- / Montagetechniker Polier\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Stundenlohnarbeiten durch Polier/in.\\n\\nVerrechnungssatz umfasst sämtliche Lohn- und Nebenkosten, Gemeinkosten, Wagnis und Gewinn.\\n\\nZeit wird nach tatsächlichem Aufwand gemäß Tätigkeitsnachweis abgerechnet.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"15\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"95.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 04.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"DL5010008\",\n\t\t\t\t\t\"name\": \"Service- / Montagetechniker Facharbeiter\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Stundenlohnarbeiten durch Facharbeiter/in.\\n\\nVerrechnungssatz umfasst sämtliche Lohn- und Nebenkosten, Gemeinkosten, Wagnis und Gewinn.\\n\\nZeit wird nach tatsächlichem Aufwand gemäß Tätigkeitsnachweis abgerechnet.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"40\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"75.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 04.2\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"DL5010008\",\n\t\t\t\t\t\"name\": \"Service- / Montagetechniker Bauhelfer\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Stundenlohnarbeiten durch Bauhelfer/in.\\n\\nVerrechnungssatz umfasst sämtliche Lohn- und Nebenkosten, Gemeinkosten, Wagnis und Gewinn.\\n\\nZeit wird nach tatsächlichem Aufwand gemäß Tätigkeitsnachweis abgerechnet.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"15\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"58.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 04.3\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        300,
+        -220
+      ],
+      "id": "5287beff-3187-4e52-9351-b9c754c32ec6",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        200,
+        20
+      ],
+      "id": "92b92464-d903-40db-a886-70ecdd9be75e",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "V39N39N0stkm851Z",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        780,
+        200
+      ],
+      "id": "177a6fe8-697c-4661-84bb-dc10d0a7bb17",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "V39N39N0stkm851Z",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        620,
+        20
+      ],
+      "id": "afc9c3b6-be8d-43f9-a416-3910ace69cc4",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "V39N39N0stkm851Z",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Map the following content of this pdf: {{ $json.text }}\ninto the desired output schema as follows:\n{\n\t\"order\": {\n\t\t\"customerId\": \"109349\",\n\t\t\"commission\": \"1901 / Sägemühle\",\n\t\t\"type\": \"A\",\n\t\t\"shippingConditionId\": \"2\",\n\t\t\"items\": {\n\t\t\t\"item\": [\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"TVB - Türblatt 875x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Liefern und Einbauen von Innentür-Elementen.\\n\\nElementgröße Richtmaß: 875 x 2.125 mm\\n\\nAngebotenes Fabrikat: Jeld-Wen Optima 30.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"140\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"183.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"TVB - Türblatt 750x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch Elementgröße: 750 x 2.125 mm.\\n\\nAngebotenes Fabrikat: Jeld-Wen Optima 30.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"1\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"183.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.2\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"TVB - Türblatt 625x2000 mm mit Dichtung\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch:\\n\\nElementgröße: 625 x 2.000 mm\\n\\nmit absenkbarer Bodendichtung.\\n\\nAngebotenes Fabrikat: Jeld-Wen Optima 30.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"1\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"227.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.3\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"Feuchtraum-Türblatt 875x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch:\\n\\nFeuchteschutz und Klimaklasse II.\\n\\nAngebotenes Fabrikat: Jeld-Wen Feuchtraumtür Typ Y.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"75\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"300.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.4\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"Feuchtraum-Türblatt 750x2125 mm\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Wie Position 01.1 jedoch:\\n\\nFeuchteschutz und Klimaklasse II.\\n\\nElementgröße: 750 x 2.125 mm\\n\\nAngebotenes Fabrikat: Jeld-Wen Feuchtraumtür Typ Y.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"11\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"300.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.5\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"620001\",\n\t\t\t\t\t\"name\": \"Eventual: HPL-Beschichtung\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"__text\": \"Alternative: Alle Türblätter (Pos 01.1-01.5) mit HPL-Beschichtung.\\n\\nAngebotenes Fabrikat: Jeld-Wen.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"84\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"228.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 01.6\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"240001\",\n\t\t\t\t\t\"name\": \"Beschläge Bad- und WC-Türen\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"ul\": {\n\t\t\t\t\t\t\t\"li\": [\n\t\t\t\t\t\t\t\t\"WC-Einsteckschloss, Klasse 1, 1-tourig\",\n\t\t\t\t\t\t\t\t\"Edelstahl-WC-Rosettengarnitur\"\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"__text\": \"Beschläge bestehend aus:\\n\\n\\n\\nAngebotenes Fabrikat: Hoppe Amsterdam.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"133\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"24.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 02.3\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"240001\",\n\t\t\t\t\t\"name\": \"Eventual: Beschläge Zimmertüren BB-Schloss\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"ul\": {\n\t\t\t\t\t\t\t\"li\": [\n\t\t\t\t\t\t\t\t\"Buntbart-Einsteckschloss, 1-tourig, je 1 Schlüssel\",\n\t\t\t\t\t\t\t\t\"Edelstahl-Rosettengarnitur\"\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"__text\": \"Beschläge bestehend aus:\\n\\n\\n\\nTürdrücker: FSB 1076 Edelstahl feingebürstet.\\n\\nAngebotenes Produkt: Hoppe Amsterdam.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"38\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"38.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 02.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"240001\",\n\t\t\t\t\t\"name\": \"Beschläge Zimmertüren PZ-Schloss\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": \"\",\n\t\t\t\t\t\t\"ul\": {\n\t\t\t\t\t\t\t\"li\": [\n\t\t\t\t\t\t\t\t\"Profilzylinderschloss, 1-tourig inkl. Schlüssel\",\n\t\t\t\t\t\t\t\t\"Edelstahl-Rosettengarnitur\"\n\t\t\t\t\t\t\t]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"__text\": \"Wie Pos 02.1 jedoch:\\n\\n\\n\\nTürdrücker: Hoppe Amsterdam.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"95\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"37.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 02.2\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"330001\",\n\t\t\t\t\t\"name\": \"Türstopper\",\n\t\t\t\t\t\"text\": \"Türstopper Wandbefestigung, Kunststoff weiß, ø ca. 40 mm, Bummsinchen o.glw.\",\n\t\t\t\t\t\"quantity\": \"228\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"6.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 03.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"DL5010008\",\n\t\t\t\t\t\"name\": \"Service- / Montagetechniker Polier\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Stundenlohnarbeiten durch Polier/in.\\n\\nVerrechnungssatz umfasst sämtliche Lohn- und Nebenkosten, Gemeinkosten, Wagnis und Gewinn.\\n\\nZeit wird nach tatsächlichem Aufwand gemäß Tätigkeitsnachweis abgerechnet.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"15\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"95.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 04.1\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"DL5010008\",\n\t\t\t\t\t\"name\": \"Service- / Montagetechniker Facharbeiter\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Stundenlohnarbeiten durch Facharbeiter/in.\\n\\nVerrechnungssatz umfasst sämtliche Lohn- und Nebenkosten, Gemeinkosten, Wagnis und Gewinn.\\n\\nZeit wird nach tatsächlichem Aufwand gemäß Tätigkeitsnachweis abgerechnet.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"40\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"75.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 04.2\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"sku\": \"DL5010008\",\n\t\t\t\t\t\"name\": \"Service- / Montagetechniker Bauhelfer\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"br\": [\n\t\t\t\t\t\t\t\"\",\n\t\t\t\t\t\t\t\"\"\n\t\t\t\t\t\t],\n\t\t\t\t\t\t\"__text\": \"Stundenlohnarbeiten durch Bauhelfer/in.\\n\\nVerrechnungssatz umfasst sämtliche Lohn- und Nebenkosten, Gemeinkosten, Wagnis und Gewinn.\\n\\nZeit wird nach tatsächlichem Aufwand gemäß Tätigkeitsnachweis abgerechnet.\"\n\t\t\t\t\t},\n\t\t\t\t\t\"quantity\": \"15\",\n\t\t\t\t\t\"quantityUnit\": \"Stk\",\n\t\t\t\t\t\"price\": \"58.00\",\n\t\t\t\t\t\"priceUnit\": \"€\",\n\t\t\t\t\t\"purchasePrice\": \"\",\n\t\t\t\t\t\"commission\": \"LV-POS. 04.3\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}\n}",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        720,
+        -220
+      ],
+      "id": "2e88b4b0-7a80-413a-a34f-245426ba0297",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "mode": "jsonToxml",
+        "dataPropertyName": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.xml",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -220
+      ],
+      "id": "86af3225-ef1e-409d-a1e6-3fd06e5d463e",
+      "name": "XML"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/data/LetThemCook/xml_output.xml",
+        "dataPropertyName": "=data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        -220
+      ],
+      "id": "7fee966a-0a98-453a-910b-d9dacb1d8f89",
+      "name": "Read/Write Files from Disk1"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "['[object Object]']",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1380,
+        -220
+      ],
+      "id": "3426f8f3-176b-4549-8fd4-2301a0bff4d7",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "708d4bf7-7a85-4e34-b6d9-973a8086721c",
+        "options": {
+          "rawBody": true
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -420,
+        -220
+      ],
+      "id": "52b5fdb3-4bf1-4c19-a237-664b3022188d",
+      "name": "Webhook",
+      "webhookId": "708d4bf7-7a85-4e34-b6d9-973a8086721c"
+    },
+    {
+      "parameters": {
+        "operation": "xml",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        40,
+        420
+      ],
+      "id": "cf492a5c-691e-4bec-8b9b-6c03a32839b0",
+      "name": "Extract from File1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "XML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "XML": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk1": {
+      "main": [
+        []
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "0050b8c8-a2b3-454c-a6f7-6ce071539860",
+  "meta": {
+    "templateId": "self-building-ai-agent",
+    "templateCredsSetupCompleted": true,
+    "instanceId": "55304cca002bfbb636fed3bb232bdeae98b0dcc6289d7aca035abaa3882168e9"
+  },
+  "id": "TBa1Iiz5YRxHIcQs",
+  "tags": []
+}
