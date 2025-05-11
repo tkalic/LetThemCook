@@ -6,51 +6,10 @@
     <title>Koch LV Verarbeitung</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        .split-row {
-            display: flex;
-            gap: 2rem;
-            min-height: 70vh;
-        }
-        .pdf-viewer-col {
-            flex: 1 1 0;
-            background: #f8fafc;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,48,87,0.06);
-            padding: 2rem 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 0;
-        }
-        .pdf-viewer-col h4 {
-            color: #003057;
-            margin-bottom: 1rem;
-        }
-        .pdf-iframe {
-            width: 100%;
-            height: 900px;
-            border: 1px solid #e0e7ef;
-            border-radius: 8px;
-            background: #fff;
-        }
-        .results-col {
-            flex: 1 1 0;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            min-width: 0;
-        }
-        @media (max-width: 991px) {
-            .split-row {
-                flex-direction: column;
-            }
-            .pdf-iframe {
-                height: 350px;
-            }
-        }
-    </style>
+
 </head>
 <body>
     <div class="header-container">
@@ -58,6 +17,12 @@
     </div>
     <div class="container-fluid py-4">
         <h1 class="text-center mb-4">LV Verarbeitung</h1>
+
+       
+       <!-- Action containers stasts-->
+        <div class="buttons-container"> 
+            
+        <form id="uploading_form_iid">
         <div class="row mb-4">
             <div class="col-md-3 mb-2">
                 <div class="form-group">
@@ -72,6 +37,29 @@
                 </div>
             </div>
         </div>
+        <div class="split-row">
+            <div class="pdf-viewer-col">
+                <h4>Original PDF</h4>
+                <iframe id="pdfViewer" class="pdf-iframe" src=""></iframe>
+            </div>
+            <div  class="col-md-2 mb-2">
+                <div class="tooltip-container">
+                    <span class="tooltip-icon">ℹ️</span>
+                    <p class="tooltip-text">  Dieses Tool ermöglicht es Ihnen, eine PDF-Datei hochzuladen. Es analysiert den Inhalt automatisch und zeigt die wichtigsten Ergebnisse übersichtlich in einer Tabelle an.    </p>
+                  </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-12">
+                <button class="btn btn-primary" onclick="" id="uploadingPDF">Hochladen</button>
+            </div>
+        </div>
+        </form>
+        
+    </div>
+    <!-- Action containers ends-->
+
+
         <div class="split-row">
             <div class="pdf-viewer-col">
                 <h4>Original PDF</h4>
@@ -108,6 +96,7 @@
                 <div>
                     <button class="btn btn-primary me-2" onclick="resetData()">Zurücksetzen</button>
                     <button class="btn btn-success" onclick="postXML()">XML Senden</button>
+                    <button class="btn btn-primary" onclick="generateXML()">XML generieren</button>
                 </div>
             </div>
         </div>
@@ -139,9 +128,15 @@
             licenseKey: 'non-commercial-and-evaluation'
         });
 
-        document.getElementById('pdfFile').addEventListener('change', async function(e) {
-            const file = e.target.files[0];
+        document.getElementById('uploadingPDF').addEventListener('click', async function(e) {
+            const input = document.getElementById('pdfFile');
+            const file = input.files[0]; // Get the first (and only) file
+        
             if (file) {
+
+                // Show PDF in iframe
+                document.querySelector('.split-row').style.display = 'flex';
+
                 const pdfUrl = URL.createObjectURL(file);
                 document.getElementById('pdfViewer').src = pdfUrl;
 
@@ -171,6 +166,10 @@
         document.getElementById('customerId').addEventListener('input', generateXML);
 
         function resetData() {
+            document.getElementById("uploading_form_iid").reset();
+            document.getElementById("pdfViewer").src = "";
+            document.querySelector('.split-row').style.display = 'none';
+
             if (originalData) {
                 hot.loadData(originalData);
                 updatePreview();
@@ -195,6 +194,7 @@
             const customerId = document.getElementById('customerId').value;
             if (!customerId) {
                 document.getElementById('xmlContent').textContent = 'Bitte geben Sie eine Kunden-ID ein.';
+                alert('Bitte geben Sie eine Kunden-ID ein.');
                 return;
             }
             const data = {
@@ -221,6 +221,8 @@
                 if (response.ok) {
                     const xmlText = await response.text();
                     document.getElementById('xmlContent').textContent = xmlText;
+
+                    document.querySelector('.nav-link[href="#xmlPreview"]').click();
                 } else {
                     const error = await response.json();
                     document.getElementById('xmlContent').textContent = error.error || 'Fehler beim Generieren des XML';
@@ -261,6 +263,7 @@
             updatePreview();
             generateXML();
         });
+        
     </script>
 </body>
 </html>
