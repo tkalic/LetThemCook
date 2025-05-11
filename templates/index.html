@@ -17,6 +17,7 @@
     </div>
     <div class="container-fluid py-4">
         <h1 class="text-center mb-4">LV Verarbeitung</h1>
+
        
        <!-- Action containers stasts-->
         <div class="buttons-container"> 
@@ -34,6 +35,12 @@
                     <label for="pdfFile">PDF-Datei auswählen</label>
                     <input type="file" class="form-control" id="pdfFile" accept=".pdf">
                 </div>
+            </div>
+        </div>
+        <div class="split-row">
+            <div class="pdf-viewer-col">
+                <h4>Original PDF</h4>
+                <iframe id="pdfViewer" class="pdf-iframe" src=""></iframe>
             </div>
             <div  class="col-md-2 mb-2">
                 <div class="tooltip-container">
@@ -88,6 +95,7 @@
                 </div>
                 <div>
                     <button class="btn btn-primary me-2" onclick="resetData()">Zurücksetzen</button>
+                    <button class="btn btn-success" onclick="postXML()">XML Senden</button>
                     <button class="btn btn-primary" onclick="generateXML()">XML generieren</button>
                 </div>
             </div>
@@ -125,6 +133,7 @@
             const file = input.files[0]; // Get the first (and only) file
         
             if (file) {
+
                 // Show PDF in iframe
                 document.querySelector('.split-row').style.display = 'flex';
 
@@ -144,6 +153,7 @@
                         hot.loadData(data);
                         originalData = JSON.parse(JSON.stringify(data));
                         updatePreview();
+                        generateXML();
                     } else {
                         alert(data.error || 'Fehler beim Hochladen der Datei');
                     }
@@ -153,6 +163,8 @@
             }
         });
 
+        document.getElementById('customerId').addEventListener('input', generateXML);
+
         function resetData() {
             document.getElementById("uploading_form_iid").reset();
             document.getElementById("pdfViewer").src = "";
@@ -161,6 +173,7 @@
             if (originalData) {
                 hot.loadData(originalData);
                 updatePreview();
+                generateXML();
             }
         }
 
@@ -180,6 +193,7 @@
         async function generateXML() {
             const customerId = document.getElementById('customerId').value;
             if (!customerId) {
+                document.getElementById('xmlContent').textContent = 'Bitte geben Sie eine Kunden-ID ein.';
                 alert('Bitte geben Sie eine Kunden-ID ein.');
                 return;
             }
@@ -207,20 +221,50 @@
                 if (response.ok) {
                     const xmlText = await response.text();
                     document.getElementById('xmlContent').textContent = xmlText;
+
                     document.querySelector('.nav-link[href="#xmlPreview"]').click();
                 } else {
                     const error = await response.json();
-                    alert(error.error || 'Fehler beim Generieren des XML');
+                    document.getElementById('xmlContent').textContent = error.error || 'Fehler beim Generieren des XML';
                 }
             } catch (error) {
-                alert('Fehler beim Generieren des XML');
+                document.getElementById('xmlContent').textContent = 'Fehler beim Generieren des XML';
+            }
+        }
+
+        async function postXML() {
+            const xmlContent = document.getElementById('xmlContent').textContent;
+            if (!xmlContent || xmlContent.includes('Bitte geben Sie eine Kunden-ID ein.')) {
+                alert('XML ist ungültig oder fehlt. Bitte überprüfen Sie die Eingaben.');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:5678/webhook-test/708d4bf7-7a85-4e34-b6d9-973a8086721c', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/xml'
+                    },
+                    body: xmlContent
+                });
+
+                if (response.ok) {
+                    alert('XML erfolgreich gesendet!');
+                } else {
+                    const error = await response.text();
+                    alert(`Fehler beim Senden des XML: ${error}`);
+                }
+            } catch (error) {
+                alert('Fehler beim Senden des XML: ' + error.message);
             }
         }
 
         hot.addHook('afterChange', function() {
             updatePreview();
+            generateXML();
         });
         
     </script>
 </body>
-</html> 
+</html>
+``` 
