@@ -167,4 +167,4 @@ def generate_xml_endpoint():
     )
 
 if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False)
+    app.run(debug=True, port=8080)
